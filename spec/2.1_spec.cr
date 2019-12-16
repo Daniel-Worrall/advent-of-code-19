@@ -4,7 +4,7 @@ describe AdventOfCode do
   describe "2.1" do
     describe AdventOfCode::Intcode do
       it "inputs state" do
-        AdventOfCode::Intcode.new("1,0,0,0,99").state.should eq([1,0,0,0,99])
+        AdventOfCode::Intcode.new("1,0,0,0,99").state.should eq([1, 0, 0, 0, 99])
       end
       it "passes example" do
         AdventOfCode::Intcode.new("1,0,0,0,99").run.state.join(",").should eq("2,0,0,0,99")

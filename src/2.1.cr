@@ -13,7 +13,7 @@ module AdventOfCode
 
     def run
       counter = 0
-      while (opcode = state[instruction_pointer]) != 99
+      while state[instruction_pointer] != 99
         step
         counter += 1
         break if counter > 1000
@@ -42,6 +42,7 @@ module AdventOfCode
   end
 
   extend self
+
   def run_2_1
     intcode = AdventOfCode::Intcode.new(File.read("#{__DIR__}/input/2.txt"))
     intcode.state[1] = 12
