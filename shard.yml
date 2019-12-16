@@ -1,0 +1,13 @@
+name: advent-of-code-19
+version: 0.1.0
+
+crystal: 0.32.0
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 0.11.0
+
+targets:
+  advent-of-code-19:
+    main: src/advent-of-code-19.cr
