@@ -1,39 +1,45 @@
 module AdventOfCode
   class WirePath
     property path : Set(Tuple(Int32, Int32)) = [{0, 0}].to_set
+    property distance = {} of Tuple(Int32, Int32) => Int32
 
     def initialize(input)
       x_coord = 0
       y_coord = 0
+      steps = 0
       input.split(",").each do |direction_distance|
         direction = direction_distance[0]
         distance = direction_distance[1..].to_i
         case direction
         when 'R'
           distance.times do |val|
-            path.add({(x_coord + val), y_coord})
+            record_path({(x_coord + val), y_coord}, steps)
+            steps += 1
           end
           x_coord += distance
         when 'L'
           distance.times do |val|
-            path.add({(x_coord - val), y_coord})
+            record_path({(x_coord - val), y_coord}, steps)
+            steps += 1
           end
           x_coord -= distance
         when 'U'
           distance.times do |val|
-            path.add({x_coord, (y_coord + val)})
+            record_path({x_coord, (y_coord + val)}, steps)
+            steps += 1
           end
           y_coord += distance
         when 'D'
           distance.times do |val|
-            path.add({x_coord, (y_coord - val)})
+            record_path({x_coord, (y_coord - val)}, steps)
+            steps += 1
           end
           y_coord -= distance
         else
           raise "Cannot parse #{direction} (#{direction_distance})"
         end
       end
-      path.add({x_coord, y_coord})
+      record_path({x_coord, y_coord}, steps)
     end
 
     def print
@@ -49,6 +55,11 @@ module AdventOfCode
 
     def intersections(wire : WirePath)
       path & wire.path
+    end
+
+    private def record_path(coords : Tuple(Int32, Int32), steps)
+      path.add(coords)
+      distance[coords] = steps unless distance[coords]?
     end
   end
 
