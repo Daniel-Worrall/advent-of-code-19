@@ -1,4 +1,4 @@
-require "./**"
+require "./crystal/**"
 require "option_parser"
 
 macro print_method(method)
