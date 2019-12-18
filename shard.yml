@@ -11,3 +11,5 @@ development_dependencies:
 targets:
   advent-of-code-19:
     main: src/advent-of-code-19.cr
+  benchmark:
+    main: src/benchmark.cr
