@@ -27,7 +27,7 @@ module AdventOfCode
         state[state[instruction_pointer + 1]] = input
         @instruction_pointer += 2
       when 4
-        output << state[state[instruction_pointer + 1]]
+        output << parameter(1, modes)
         @instruction_pointer += 2
       when 99
       else
