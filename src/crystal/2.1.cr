@@ -22,16 +22,12 @@ module AdventOfCode
     end
 
     def step
-      opcode = state[instruction_pointer]
-      input_position_one = state[instruction_pointer + 1]
-      input_position_two = state[instruction_pointer + 2]
-      output_position = state[instruction_pointer + 3]
-      case opcode
+      case opcode = state[instruction_pointer]
       when 1
-        state[output_position] = state[input_position_one] + state[input_position_two]
+        state[state[instruction_pointer + 3]] = state[state[instruction_pointer + 1]] + state[state[instruction_pointer + 2]]
         @instruction_pointer += 4
       when 2
-        state[output_position] = state[input_position_one] * state[input_position_two]
+        state[state[instruction_pointer + 3]] = state[state[instruction_pointer + 1]] * state[state[instruction_pointer + 2]]
         @instruction_pointer += 4
       when 99
       else
