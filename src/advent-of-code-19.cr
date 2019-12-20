@@ -1,5 +1,6 @@
 require "./crystal/**"
 require "option_parser"
+require "benchmark"
 
 macro print_method(method)
   print {{ method[4..method.size].gsub(/_/, ".") }}, ": ", AdventOfCode.{{ method.id }}, "\n"
@@ -22,6 +23,16 @@ OptionParser.parse do |parser|
         print_method({{method}})
       end
     {% end %}
+  end
+
+  parser.on("-bm", "--benchmark", "Benchmarks the solutions.") do
+    Benchmark.bm do |x|
+      {% for method, _index in AdventOfCode.methods.map(&.name.stringify).select { |name| name =~ /run_(\d+_\d)/ } %}
+        x.report({{method.stringify}}) do
+          AdventOfCode.{{method.id}}
+        end
+      {% end %}
+    end
   end
 
   parser.on("-h", "--help", "Show this help") { puts parser }
