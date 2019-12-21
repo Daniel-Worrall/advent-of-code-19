@@ -18,7 +18,7 @@ module AdventOfCode
     end
 
     def total_orbits
-      orbit_map.keys.sum { |orbiter| orbits(orbiter) }
+      orbit_map.keys.sum(&->orbits(String))
     end
   end
 
