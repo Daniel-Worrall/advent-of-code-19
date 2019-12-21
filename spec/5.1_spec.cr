@@ -12,12 +12,6 @@ describe AdventOfCode do
         AdventOfCode::Intcode.new("1,9,10,3,2,3,11,0,99,30,40,50").run.state.join(",").should eq("3500,9,10,70,2,3,11,0,99,30,40,50")
       end
 
-      it "stores the input" do
-        intcode = AdventOfCode::Intcode.new("3,0,4,0,99")
-        intcode.run(50)
-        intcode.input.should eq 50
-      end
-
       it "inputs" do
         intcode = AdventOfCode::Intcode.new("3,0,99")
         intcode.run(50)

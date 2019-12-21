@@ -1,9 +1,10 @@
 module AdventOfCode
   class Intcode
-    property input : Int32 = 0
+    property input = [] of Int32
     property output = [] of Int32
 
-    def run(@input)
+    def run(*input)
+      @input = input.to_a
       counter = 0
       while state[instruction_pointer] != 99
         step
@@ -24,7 +25,7 @@ module AdventOfCode
         state[state[instruction_pointer + 3]] = parameter(1, modes) * parameter(2, modes)
         @instruction_pointer += 4
       when 3
-        state[state[instruction_pointer + 1]] = input
+        state[state[instruction_pointer + 1]] = input.shift
         @instruction_pointer += 2
       when 4
         output << parameter(1, modes)
