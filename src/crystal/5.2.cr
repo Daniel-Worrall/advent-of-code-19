@@ -1,5 +1,6 @@
 module AdventOfCode
   class Intcode
+    # ameba:disable Metrics/CyclomaticComplexity
     def step
       instruction = state[instruction_pointer]
       modes = (instruction // 100).to_s.chars.map(&.to_i)
