@@ -17,10 +17,6 @@ I)SAN"
       it "passes example" do
         starmap = AdventOfCode::StarMap.new(map).orbit_jumps("YOU", "SAN").should eq 4
       end
-
-      it "produces a tree" do
-
-      end
     end
   end
 end
